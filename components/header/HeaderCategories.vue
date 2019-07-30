@@ -6,12 +6,12 @@
     align-center
   >
     <nuxt-link
-      v-for="(category, index) in capitalizedCategories"
+      v-for="(category, index) in categories"
       :key="index"
-      :to="`/category/${category}`"
+      :to="category.link"
       class="headerCategories__tab"
     >
-      {{ category }}
+      {{ category.title.toUpperCase() }}
       <v-icon small>
         keyboard_arrow_down
       </v-icon>
@@ -24,21 +24,35 @@ export default {
   data() {
     return {
       categories: [
-        'Home',
-        'About',
-        'Creative',
-        'Opinion',
-        'Topic',
-        'World',
-        'Discussion'
+        {
+          link: '/',
+          title: 'home'
+        },
+        {
+          link: '/category/about',
+          title: 'about'
+        },
+        {
+          link: '/category/creative',
+          title: 'creative'
+        },
+        {
+          link: '/category/opinion',
+          title: 'opinion'
+        },
+        {
+          link: '/category/topic',
+          title: 'topic'
+        },
+        {
+          link: '/category/world',
+          title: 'world'
+        },
+        {
+          link: '/category/discussion',
+          title: 'discussion'
+        }
       ]
-    }
-  },
-  computed: {
-    capitalizedCategories() {
-      return this.categories.map((category) => {
-        return category.toUpperCase()
-      })
     }
   }
 }
@@ -56,6 +70,10 @@ export default {
     display: flex;
     align-items: center;
     text-decoration: none;
+    transition: all 0.3s;
+    &:hover {
+      color: $pink;
+    }
   }
   &__tab + &__tab {
     margin-left: 2.5%;
@@ -65,6 +83,7 @@ export default {
     border-bottom: 1px solid #efefef;
     width: 100%;
     height: 50px;
+    max-height: 50px;
   }
 }
 </style>

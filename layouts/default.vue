@@ -4,12 +4,12 @@
     <Header />
     <HeaderCategories />
     <v-content>
-      <v-container>
+      <v-container fill-height justify-center lg-8>
         <nuxt />
       </v-container>
     </v-content>
-    <v-footer app>
-      <span>&copy; 2019</span>
+    <v-footer app absolute>
+      <span>Footer Section &copy; 2019</span>
     </v-footer>
   </v-app>
 </template>
