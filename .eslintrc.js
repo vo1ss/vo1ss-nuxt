@@ -20,6 +20,7 @@ module.exports = {
     'vue/html-self-closing': {
       void: 'always'
     },
+    'vue/no-v-html': 'off',
     'no-console': 'off',
     'arrow-parens': ["error", "as-needed"]
   }

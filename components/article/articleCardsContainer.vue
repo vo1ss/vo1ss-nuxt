@@ -1,7 +1,7 @@
 <template>
   <v-container pl-0 pr-0 fluid grid-list-lg>
     <v-layout wrap justify-start>
-      <v-flex v-for="(article, index) of articles" :key="index" xs12 sm6 lg4>
+      <v-flex v-for="(article, index) of articles.data" :key="index" xs12 sm6 lg4>
         <articleCard :article="article" />
       </v-flex>
     </v-layout>
@@ -17,9 +17,9 @@ export default {
   },
   props: {
     articles: {
-      type: Array,
+      type: Object,
       default: () => {
-        return []
+        return {}
       }
     }
   }

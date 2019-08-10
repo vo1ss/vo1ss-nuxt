@@ -1,10 +1,10 @@
 <template>
   <v-layout class="landing" fill-height column text-xs-center>
     <!-- HERO SECTION -->
-    <v-flex class="landing__section">
+    <v-flex class="landing__section" hidden-xs-and-down>
       <v-carousel hide-delimiters :cycle="false" class="landing__section__carousel">
         <v-carousel-item
-          v-for="(item, index) of recent"
+          v-for="(item, index) of articles('recent').data"
           :key="index"
           :src="item.jetpack_featured_media_url"
         />
@@ -14,7 +14,9 @@
     <v-flex v-for="(section, index) of sections" :key="index" class="landing__section">
       <div class="container__header">
         <span class="container__header__separator" />
-        <h1 class="container__header__title">{{ section.title }}</h1>
+        <h1 class="container__header__title">
+          {{ section.title }}
+        </h1>
         <span class="container__header__separator" />
       </div>
       <articleCardsContainer :articles="section.articles" />
@@ -42,8 +44,8 @@ export default {
           id: 'featured'
         }, 
         {
-          title: 'DISCUSSION',
-          id: 'discussion'
+          title: 'STORIES & OPINION',
+          id: 'stories'
         }, 
         {
           title: "EDITOR'S PICKS",
@@ -54,20 +56,22 @@ export default {
   },
   computed: {
     ...mapGetters({
-      recent: 'articles/recent'
+      articles: "articles/getArticles"
     }),
     sections() {
-      return this.sectionTitles.map(section => {
+      return this.sectionTitles.map(({ title, id }) => {
         return {
-          title: section.title,
-          articles: this[section.id]
+          title,
+          articles: this.articles(id)
         }
       })
     }
   },
-  mounted() {
-    this.$store.dispatch('articles/fetchArticles')
-    this.$store.dispatch('categories/fetchCategories')
+  async fetch({ store }) {
+    await store.dispatch('articles/fetchRecentArticles')
+    await store.dispatch('articles/fetchFeaturedArticles')
+    await store.dispatch('articles/fetchStoriesArticles')
+    await store.dispatch('categories/fetchCategories')
   }
 }
 </script>

@@ -12,9 +12,6 @@
       class="headerCategories__tab"
     >
       {{ category.title.toUpperCase() }}
-      <v-icon small>
-        keyboard_arrow_down
-      </v-icon>
     </nuxt-link>
   </v-layout>
 </template>
@@ -29,28 +26,28 @@ export default {
           title: 'home'
         },
         {
-          link: '/category/about',
-          title: 'about'
+          link: '/category/who-we-are',
+          title: 'Who We Are'
         },
         {
-          link: '/category/creative',
-          title: 'creative'
+          link: '/category/work-and-careers',
+          title: 'Work & Careers'
         },
         {
-          link: '/category/opinion',
-          title: 'opinion'
+          link: '/category/academics-and-research',
+          title: 'Academics & Research'
         },
         {
-          link: '/category/topic',
-          title: 'topic'
+          link: '/category/stories-and-opinion',
+          title: 'Stories & Opinion'
         },
         {
-          link: '/category/world',
-          title: 'world'
+          link: '/category/arts-and-creative',
+          title: 'Arts & Creative'
         },
         {
-          link: '/category/discussion',
-          title: 'discussion'
+          link: '/share-your-vo1ss',
+          title: 'Share Your Vo1ss'
         }
       ]
     }
