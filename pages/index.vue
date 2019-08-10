@@ -1,15 +1,5 @@
 <template>
   <v-layout class="landing" fill-height column text-xs-center>
-    <!-- HERO SECTION -->
-    <v-flex class="landing__section" hidden-xs-and-down>
-      <v-carousel hide-delimiters :cycle="false" class="landing__section__carousel">
-        <v-carousel-item
-          v-for="(item, index) of articles('recent').data"
-          :key="index"
-          :src="item.jetpack_featured_media_url"
-        />
-      </v-carousel>
-    </v-flex>
     <!-- SECTIONS -->
     <v-flex v-for="(section, index) of sections" :key="index" class="landing__section">
       <div class="container__header">
@@ -56,7 +46,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      articles: "articles/getArticles"
+      articles: 'articles/getArticles'
     }),
     sections() {
       return this.sectionTitles.map(({ title, id }) => {
@@ -68,10 +58,13 @@ export default {
     }
   },
   async fetch({ store }) {
-    await store.dispatch('articles/fetchRecentArticles')
-    await store.dispatch('articles/fetchFeaturedArticles')
-    await store.dispatch('articles/fetchStoriesArticles')
-    await store.dispatch('categories/fetchCategories')
+    if (store.state.articles.articles.length === 0) {
+      await store.dispatch('articles/fetchRecentArticles')
+      await store.dispatch('articles/fetchFeaturedArticles')
+      await store.dispatch('articles/fetchStoriesArticles')
+      await store.dispatch('articles/fetchPicksArticles')
+      await store.dispatch('categories/fetchCategories')
+    }
   }
 }
 </script>
@@ -84,9 +77,6 @@ export default {
   max-width: 1170px;
   &__section {
     margin-top: 3.5%;
-    &__carousel {
-      box-shadow: none;
-    }
   }
 }
 .container {
@@ -97,7 +87,7 @@ export default {
     &__title {
       flex: 0 1 auto;
       font-size: 0.85rem;
-      padding: 0 3.5%;
+      margin: 0 3.5%;
     }
     &__separator {
       position: relative;

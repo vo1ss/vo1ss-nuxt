@@ -7,8 +7,6 @@ export default {
   getArticles: state => category => {
     return state.articles.filter(child => child.category === category)[0]
   },
-  getStories(state) {},
-  getEditorPicks(state) {},
 
   // GETTERS FOR ARTICLE PAGE
   getArticle(state) {

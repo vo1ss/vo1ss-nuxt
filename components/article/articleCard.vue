@@ -44,9 +44,6 @@ export default {
     excerpt() {
       return `${this.article.excerpt.rendered.slice(0, 280)}...`
     }
-  },
-  mounted() {
-    console.log(this.article);
   }
 }
 </script>

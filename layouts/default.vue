@@ -3,6 +3,7 @@
     <!-- <Toolbar app /> -->
     <Header />
     <HeaderCategories />
+    <Carousel />
     <v-content>
       <v-container fill-height justify-center lg-8>
         <nuxt />
@@ -18,12 +19,14 @@
 // import Toolbar from '@/components/core/Toolbar'
 import Header from '@/components//header/Header'
 import HeaderCategories from '@/components/header/HeaderCategories'
+import Carousel from '@/components/Carousel'
 
 export default {
   components: {
     // Toolbar,
     Header,
-    HeaderCategories
+    HeaderCategories,
+    Carousel
   }
 }
 </script>
