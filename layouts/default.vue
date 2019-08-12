@@ -27,6 +27,15 @@ export default {
     Header,
     HeaderCategories,
     Carousel
+  },
+  mounted() {
+    if (this.$store.state.articles.articles.length === 0) {
+      this.$store.dispatch('articles/fetchRecentArticles')
+      this.$store.dispatch('articles/fetchFeaturedArticles')
+      this.$store.dispatch('articles/fetchStoriesArticles')
+      this.$store.dispatch('articles/fetchPicksArticles')
+      this.$store.dispatch('categories/fetchCategories')
+    }
   }
 }
 </script>

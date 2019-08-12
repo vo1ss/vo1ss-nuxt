@@ -1,7 +1,7 @@
 <template>
   <v-carousel hide-delimiters :cycle="false" class="carousel">
     <v-carousel-item
-      v-for="(item, index) of articles('recent').data"
+      v-for="(item, index) of carouselData"
       :key="index"
       :src="item.jetpack_featured_media_url"
     >
@@ -25,6 +25,10 @@ export default {
     ...mapGetters({
       articles: 'articles/getArticles'
     }),
+    carouselData() {
+      const res = this.articles('recent')
+      return res === undefined ? [] : res.data
+    }
   }
 }
 </script>

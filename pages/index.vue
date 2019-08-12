@@ -56,15 +56,6 @@ export default {
         }
       })
     }
-  },
-  async fetch({ store }) {
-    if (store.state.articles.articles.length === 0) {
-      await store.dispatch('articles/fetchRecentArticles')
-      await store.dispatch('articles/fetchFeaturedArticles')
-      await store.dispatch('articles/fetchStoriesArticles')
-      await store.dispatch('articles/fetchPicksArticles')
-      await store.dispatch('categories/fetchCategories')
-    }
   }
 }
 </script>
